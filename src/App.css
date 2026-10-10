@@ -1,0 +1,575 @@
+
+/* =========================
+   GLOBAL STYLES
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ffffff;
+  background: #121212;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  min-width: 320px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      ellipse at top center,
+      #243b30 0%,
+      #171b19 35%,
+      #121212 70%
+    );
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  padding: 20px 6%;
+  background: rgba(8, 8, 8, 0.95);
+  border-bottom: 1px solid #292929;
+  backdrop-filter: blur(12px);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #ffffff;
+  font-size: 25px;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.logo span {
+  color: #1ed760;
+}
+
+.spotify-link {
+  color: #d4d4d4;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.spotify-link:hover {
+  color: #1ed760;
+}
+
+/* =========================
+   MAIN HERO SECTION
+========================= */
+
+.app-container {
+  width: 100%;
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 55px 32px 70px;
+  text-align: center;
+}
+
+.app-container h1 {
+  max-width: 900px;
+  margin: 15px auto 18px;
+  color: #ffffff;
+  font-size: clamp(34px, 5vw, 58px);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -1.5px;
+}
+
+.app-container > p {
+  color: #b3b3b3;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* =========================
+   SPOTIFY LOGIN BUTTON
+========================= */
+
+.spotify-login {
+  margin-top: 10px;
+  padding: 14px 28px;
+  color: #000000;
+  background: #1ed760;
+  border: none;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.spotify-login:hover {
+  background: #3be477;
+  transform: scale(1.04);
+}
+
+.spotify-login:active {
+  transform: scale(0.98);
+}
+
+/* =========================
+   SEARCH BAR
+========================= */
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 620px;
+  margin: 30px auto 20px;
+  padding: 7px;
+  background: #242424;
+  border: 1px solid #414141;
+  border-radius: 40px;
+  transition: border-color 0.2s ease;
+}
+
+.search-box:focus-within {
+  border-color: #1ed760;
+}
+
+.search-box input {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  padding: 13px 18px;
+  color: #ffffff;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 15px;
+}
+
+.search-box input::placeholder {
+  color: #a7a7a7;
+}
+
+.search-box input::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
+.search-box button {
+  flex-shrink: 0;
+  padding: 13px 24px;
+  color: #000000;
+  background: #1ed760;
+  border: none;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.search-box button:hover {
+  background: #3be477;
+}
+
+.search-box button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* =========================
+   MESSAGES AND STATUS
+========================= */
+
+.app-container > p.result-count {
+  margin: 28px 0 0;
+  color: #b3b3b3;
+  font-size: 14px;
+  text-align: left;
+}
+
+.app-container > p.demo-note {
+  margin: 35px 0 0;
+  color: #777777;
+  font-size: 12px;
+}
+
+.app-container > p:not(.result-count):not(.demo-note) {
+  overflow-wrap: anywhere;
+}
+
+/* =========================
+   ALBUM GRID
+========================= */
+
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  width: 100%;
+  margin: 40px auto 30px;
+  text-align: left;
+}
+
+/* =========================
+   ALBUM CARD
+========================= */
+
+.album-card {
+  min-width: 0;
+  padding: 18px;
+  overflow: hidden;
+  background: #181818;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.album-card:hover {
+  background: #242424;
+  border-color: #343434;
+  transform: translateY(-5px);
+}
+
+/* Album cover */
+
+.album-cover-link {
+  display: block;
+  overflow: hidden;
+  background: #242424;
+  border-radius: 9px;
+}
+
+.album-cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 9px;
+  transition: transform 0.3s ease;
+}
+
+.album-card:hover .album-cover {
+  transform: scale(1.04);
+}
+
+/* Album details */
+
+.album-info {
+  padding-top: 2px;
+}
+
+.album-info h3 {
+  margin: 16px 0 8px;
+  overflow: hidden;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.album-info p {
+  margin: 0 0 9px;
+  overflow: hidden;
+  color: #b3b3b3;
+  font-size: 14px;
+  line-height: 1.5;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.album-info span {
+  display: block;
+  margin-bottom: 16px;
+  color: #a7a7a7;
+  font-size: 13px;
+}
+
+/* Explore on Spotify link */
+
+.listen-link {
+  display: inline-block;
+  color: #1ed760;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.listen-link:hover {
+  color: #70f49b;
+  text-decoration: underline;
+}
+
+/* =========================
+   LOADING / EMPTY STATES
+========================= */
+
+.album-grid:empty {
+  display: none;
+}
+
+/* =========================
+   CALLBACK PAGE
+========================= */
+
+.app-container a.listen-link {
+  margin-top: 12px;
+}
+
+/* =========================
+   TABLET RESPONSIVENESS
+========================= */
+
+@media (max-width: 850px) {
+  .app-container {
+    padding: 45px 24px 60px;
+  }
+
+  .album-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .app-container h1 {
+    letter-spacing: -0.8px;
+  }
+}
+
+/* =========================
+   MOBILE RESPONSIVENESS
+========================= */
+
+@media (max-width: 500px) {
+  .navbar {
+    gap: 12px;
+    padding: 17px 18px;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .spotify-link {
+    font-size: 12px;
+  }
+
+  .app-container {
+    padding: 35px 17px 45px;
+  }
+
+  .app-container h1 {
+    margin-top: 12px;
+    font-size: 35px;
+    letter-spacing: -0.7px;
+  }
+
+  .app-container > p {
+    font-size: 14px;
+  }
+
+  .spotify-login {
+    padding: 13px 23px;
+  }
+
+  .search-box {
+    gap: 4px;
+    margin-top: 25px;
+    padding: 5px;
+  }
+
+  .search-box input {
+    padding: 11px 10px;
+    font-size: 13px;
+  }
+
+  .search-box button {
+    padding: 12px 15px;
+    font-size: 13px;
+  }
+
+  .album-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 30px;
+  }
+
+  .album-card {
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .album-info h3 {
+    margin-top: 12px;
+    font-size: 15px;
+  }
+
+  .album-info p {
+    font-size: 12px;
+  }
+
+  .album-info span,
+  .listen-link {
+    font-size: 12px;
+  }
+}
+
+/* =========================
+   SMALL MOBILE SCREENS
+========================= */
+
+@media (max-width: 350px) {
+  .logo {
+    font-size: 17px;
+  }
+
+  .spotify-link {
+    font-size: 11px;
+  }
+
+  .album-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .app-container h1 {
+    font-size: 30px;
+  }
+}
+
+
+.hero-section {
+  padding: 30px 0 20px;
+}
+
+.eyebrow {
+  color: #1ed760 !important;
+  font-size: 11px !important;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.highlight-text {
+  color: #1ed760;
+}
+
+.hero-description {
+  max-width: 600px;
+  margin: 0 auto 25px;
+}
+
+.discover-section {
+  margin-top: 45px;
+  text-align: left;
+}
+
+.section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.section-heading h2 {
+  margin: 8px 0 0;
+  font-size: 28px;
+}
+
+.section-caption {
+  color: #b3b3b3;
+  font-size: 13px;
+}
+
+.error-message {
+  color: #ff7777 !important;
+}
+
+.status-message {
+  color: #b3b3b3;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.page-footer {
+  margin-top: 60px;
+  padding: 22px 0;
+  color: #777;
+  border-top: 1px solid #292929;
+  font-size: 12px;
+  text-align: center;
+}
+
+
+.profile-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border: 1px solid #333;
+  border-radius: 25px;
+  background: #181818;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.profile-button:hover {
+  background: #333;
+  transform: scale(1.04);
+}
+
+.profile-button img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-placeholder {
+  font-size: 28px;
+}
